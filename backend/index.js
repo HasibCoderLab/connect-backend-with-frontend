@@ -3,6 +3,7 @@ import cors from "cors"
 
 
 const app  = express();
+app.use(express.json())
 app.use(cors({
     "origin": "http://localhost:5173"
 }))
@@ -13,6 +14,8 @@ app.get("/",(req,res) =>{
 });
 
 app.post("/",(req,res) =>{
+    console.log(req.body);
+    
     res.send({success:true});
 });
 

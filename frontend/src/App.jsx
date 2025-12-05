@@ -1,27 +1,30 @@
 import React, { useState } from "react";
-import axios from "axios"
+import axios from "axios";
+
 
 const App = () => {
-  const [userName, setUserName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const getRes = (e) => {
-    e.preventDefault()
-    axios.post("http://localhost:8000/", {
-      userName,
-      email,
-      password
+
+async function getRes(e) {
+  
+   e.preventDefault();
+
+  axios.post("http://localhost:8000/", {
+    userName,
+    email,
+    password
+  })
+    .then((e) => {
+      console.log("Success:", e.data);
     })
-      .then((e) => {
-        console.log(e.data);
+    .catch((e) => {
+      console.log("Error:", e.data);
+    });
+};
 
-      })
-      .catch((e) => {
-        console.log(e.data);
-
-      })
-  }
 
 
   return (
@@ -46,7 +49,7 @@ const App = () => {
         </div>
 
         <button type="submit" className="w-full bg-red-400 text-white py-2 rounded-lg cursor-pointer"
-          onClick={() => getRes()} >
+          onClick={(e) => getRes(e)} >
           Submit
         </button>
       </form>
