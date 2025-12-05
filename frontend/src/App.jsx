@@ -4,10 +4,19 @@ const App = () => {
   const [email, setEmail] = useState();
   const [userName, setuserName] = useState();
   const [password, setPassword] = useState();
+  //   const getRes = (e) =>{
+  //   e.preventDefault()
+  // }
+  async function getRes() {
+    let res = await fetch("http://localhost:8000/");
+    let data = await res.json();
+    console.log(data);
+    
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-700">
-      <form className="bg-white p-6 rounded-2xl shadow-md w-80 space-y-4">
+  <form className="bg-white p-6 rounded-2xl shadow-md w-80 space-y-4">
 
         <h2 className="text-xl font-semibold text-gray-700 text-center">
           Log in
@@ -27,10 +36,11 @@ const App = () => {
             value={password} />
         </div>
 
-        <button className="w-full bg-green-500 text-white py-2 rounded-lg" >
+        <button className="w-full bg-green-500 text-white py-2 rounded-lg cursor-pointer " onClick={() => getRes()}>
           Submit
         </button>
-      </form>
+      </form> 
+      
     </div>
   );
 };
